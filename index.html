@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PSU-GS — Perceptual Surface Unit Guided Gaussian Splatting for in-the-wild reconstruction.">
+  <title>PSU-GS · Project Page</title>
+  <link rel="stylesheet" href="styles.css?rev=audited-material-v3">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="PSU-GS home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>PSU—GS</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#editor">Scene editor</a>
+      <a href="#gallery">Gallery</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero screen-section">
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Research project · 3D Gaussian Splatting</p>
+        <h1><em>Perceptual Surface Units</em><br><span>for Gaussians in the Wild.</span></h1>
+        <p class="hero-deck">A surface-structured framework that organizes stable appearance across views while accounting for observation-dependent illumination, visibility, and camera response.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#results">Explore results <span>↓</span></a>
+          <a class="button button-quiet" href="#method">How it works <span>↗</span></a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="PSU-GS rendering of Trevi Fountain">
+        <img src="assets/comparison/trevi_01693870_2401033603_ours.png" alt="PSU-GS reconstruction of Trevi Fountain at night">
+        <div class="hero-caption">
+          <span class="caption-index">01</span><span>Trevi Fountain</span><span class="caption-rule"></span><span>Novel view synthesis</span>
+        </div>
+      </div>
+
+      <div class="paper-meta">
+        <div class="meta-title">PSU-GS: Perceptual Surface Unit Guided Gaussian Splatting for In-the-Wild Reconstruction</div>
+        <div class="authors">
+          <span>Liang Liao<sup>1</sup></span><span>Jierui Jin<sup>1</sup></span><span>Tengfei Liu<sup>1</sup></span>
+          <span>Weiqing Yan<sup>2</sup></span><span>Wujie Zhou<sup>3</sup></span><span>Ruimin Hu<sup>1</sup></span>
+        </div>
+        <div class="affiliations">
+          <span><sup>1</sup> Hangzhou Institute of Technology, Xidian University</span>
+          <span><sup>2</sup> Yantai University · <sup>3</sup> Zhejiang University of Science and Technology</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="statement" aria-labelledby="abstract-title">
+      <div><p class="section-kicker">Abstract</p><h2 id="abstract-title">Stable surfaces.<br><em>Unstable observations.</em></h2></div>
+      <p>Internet photo collections contain dramatic variation in illumination, exposure, camera response, and transient occlusion. PSU-GS introduces cross-view perceptual surface units as structural priors for appearance modeling. Fine-grained surface relations are transferred to Gaussian primitives through probabilistic association, improving local consistency and detail while enabling continuous, region-aware scene editing.</p>
+    </section>
+
+    <section class="method screen-section" id="method" aria-labelledby="method-title">
+      <div class="method-copy">
+        <p class="section-kicker light">Method at a glance</p>
+        <h2 id="method-title">From observations<br>to <em>surface structure.</em></h2>
+        <p>PSUD combines regional appearance and 3D geometric consistency to establish cross-view surface relations. These priors guide Gaussian appearance modeling while observation-dependent illumination and light-path visibility remain explicit.</p>
+        <ol>
+          <li><span>01</span><div><strong>Decompose</strong><small>Discover perceptual surface units across views.</small></div></li>
+          <li><span>02</span><div><strong>Associate</strong><small>Transfer surface priors to Gaussian primitives probabilistically.</small></div></li>
+          <li><span>03</span><div><strong>Render & edit</strong><small>Preserve detail and expose controllable appearance factors.</small></div></li>
+        </ol>
+      </div>
+      <button class="method-figure" id="method-figure" aria-label="Open paper main figure at full size">
+        <img src="assets/figures/method-main.png" alt="PSU-GS paper main figure">
+        <span>Paper main figure · enlarge ↗</span>
+      </button>
+    </section>
+
+    <section class="results screen-section" id="results" aria-labelledby="results-title">
+      <div class="section-head compact-head">
+        <div><p class="section-kicker light">Rendering comparison · 6 selected views</p><h2 id="results-title">Where the difference <em>becomes visible.</em></h2></div>
+        <p>Drag the divider to compare WildGaussians with PSU-GS at the same camera pose. Every image is shown in full.</p>
+      </div>
+      <div class="comparison-layout">
+        <div class="scene-rail" id="compare-scenes" role="tablist" aria-label="Comparison scenes"></div>
+        <div class="compare-main">
+          <div class="compare-toolbar">
+            <div><span class="mini-label">Selected view</span><div class="view-switch" id="compare-views"></div></div>
+            <div class="metric-chip"><span id="compare-gain">+2.65</span><small>dB PSNR</small></div>
+          </div>
+          <div class="compare-stage" id="compare-stage">
+            <img class="compare-base" id="compare-base" alt="WildGaussians baseline rendering">
+            <div class="compare-reveal" id="compare-reveal"><img id="compare-ours" alt="PSU-GS rendering"></div>
+            <div class="compare-label label-left">WildGaussians</div><div class="compare-label label-right">PSU-GS</div>
+            <div class="compare-divider" id="compare-divider"><span>↔</span></div>
+            <input class="compare-range" id="compare-range" type="range" min="0" max="100" value="50" aria-label="Reveal PSU-GS comparison">
+          </div>
+          <div class="compare-foot"><p id="compare-caption"></p><p class="compare-hint"><span>↔</span> drag to reveal</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="editor screen-section" id="editor" aria-labelledby="editor-title">
+      <div class="section-head compact-head editor-head">
+        <div><p class="section-kicker">Interactive scene editor</p><h2 id="editor-title">Edit appearance, <em>keep structure.</em></h2></div>
+        <p>Choose a scene, then edit illumination or lock one audited perceptual surface unit and inspect its physical material response.</p>
+      </div>
+      <div class="editor-scene-tabs" id="editor-scenes" role="tablist" aria-label="Editable scenes"></div>
+      <div class="editor-console">
+        <div class="edit-stage-wrap">
+          <div class="edit-stage" id="edit-stage">
+            <img id="edit-lower" alt="Scene illumination preview"><img id="edit-upper" alt="Interpolated scene illumination preview">
+            <canvas id="material-canvas" aria-label="Click to select a material region"></canvas>
+            <div class="stage-badge"><i></i><span id="stage-badge-text">Interactive render</span></div>
+            <div class="click-tip" id="click-tip"><span>＋</span> Click a colored mask to lock</div>
+            <div class="locked-region-label" id="locked-region-label" hidden><span>Locked region</span><strong id="locked-region-name"></strong></div>
+            <div class="stage-readout"><span id="stage-mode">Illumination</span><strong id="stage-value">t = 0.50</strong></div>
+          </div>
+          <p class="render-note" id="render-note">Full-frame frozen-model renders; fine substeps interpolate between the nearest anchors.</p>
+        </div>
+        <div class="control-panel">
+          <div class="mode-switch" role="tablist" aria-label="Editing mode">
+            <button class="is-active" data-mode="illumination" role="tab">Illumination</button><button data-mode="material" role="tab">Material region</button>
+          </div>
+          <div class="control-view is-active" id="illumination-controls">
+            <div class="control-title"><div><span class="control-index">A</span><h3>Illumination edit</h3></div><output id="light-output" for="light-range">0.50</output></div>
+            <p>Interpolate between two learned observation appearances while preserving camera pose and scene geometry.</p>
+            <input class="editor-range" id="light-range" type="range" min="0" max="1" step="0.01" value="0.50" aria-label="Illumination interpolation parameter">
+            <div class="range-labels"><span>0.00<br><small>Source light</small></span><span>Δ 0.01</span><span>1.00<br><small>Target light</small></span></div>
+            <div class="anchor-row"><span>0</span><i></i><span>.25</span><i></i><span>.50</span><i></i><span>.75</span><i></i><span>1</span></div>
+          </div>
+          <div class="control-view material-view" id="material-controls">
+            <div class="control-title"><div><span class="control-index">B</span><h3>Material region edit</h3></div><output id="material-output" for="material-range">+0.00</output></div>
+            <div class="direct-select-note"><span>1</span><p><strong>Select and lock a region</strong><small>Turn on Selection, then click a colored mask.</small></p><div class="selection-tools"><b id="region-count">Loading…</b><label class="toggle"><input id="selection-toggle" type="checkbox" checked><span></span>Selection</label></div></div>
+            <div class="selection-row">
+              <span><i id="selected-color"></i><strong id="selected-name">No region locked</strong><small id="selected-uid">Choose one mask before adjusting it</small></span>
+              <button class="unlock-button" id="unlock-region" type="button" disabled>Unlock</button>
+            </div>
+            <div class="region-grid" id="region-grid" aria-label="Surface region index"></div>
+            <div class="preset-block physical-response"><span class="mini-label dark">2 · Physical material response</span><strong id="material-factor">Original · ×1.00</strong><small>Frozen-model Reduced / Original / Enhanced renders</small></div>
+            <input class="editor-range" id="material-range" type="range" min="-1" max="1" step="0.01" value="0" disabled aria-label="Material edit strength">
+            <div class="range-labels"><span>−1.00<br><small>Reduced</small></span><span>t · Δ 0.01</span><span>+1.00<br><small>Enhanced</small></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery screen-section" id="gallery" aria-labelledby="gallery-title">
+      <div class="section-head compact-head"><div><p class="section-kicker">Visual atlas · 12 examples</p><h2 id="gallery-title">Three places. <em>Many appearances.</em></h2></div><p>Real project outputs spanning baseline comparison, illumination endpoints, and fine-grained material selections.</p></div>
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </section>
+
+    <section class="citation" aria-labelledby="citation-title">
+      <div><p class="section-kicker light">Citation</p><h2 id="citation-title">Build on <em>surface structure.</em></h2></div>
+      <div class="bibtex-wrap"><button id="copy-citation">Copy BibTeX</button><pre id="bibtex">@article{liao2026psugs,
+  title  = {PSU-GS: Perceptual Surface Unit Guided Gaussian Splatting for In-the-Wild Reconstruction},
+  author = {Liao, Liang and Jin, Jierui and Liu, Tengfei and Yan, Weiqing and Zhou, Wujie and Hu, Ruimin},
+  year   = {2026}
+}</pre></div>
+    </section>
+  </main>
+
+  <footer><div class="footer-mark">PSU—GS</div><p>Perceptual Surface Unit Guided Gaussian Splatting<br>for In-the-Wild Reconstruction</p><a href="#top">Back to top ↑</a></footer>
+  <dialog class="lightbox" id="lightbox"><button id="lightbox-close" aria-label="Close image">×</button><img id="lightbox-image" alt="Expanded project figure"><p id="lightbox-caption"></p></dialog>
+  <script src="embedded-editor-assets.js?rev=audited-material-v3"></script>
+  <script src="script.js?rev=audited-material-v3"></script>
+</body>
+</html>
